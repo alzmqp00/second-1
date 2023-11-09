@@ -102,13 +102,13 @@ double calculate(char *expression)
 }
 int main()
 {
-    printf("運算式裡可以有括號，Operators包含+、-、：*、/、%、^，運算元必須是正數\n");
+    printf("Expressions can contain parentheses, and operators include +, -, *, /, %%, and ^. Operands must be positive numbers.\n");
     while (1)
     {
         char *expression = (char *)malloc(MAX_EXPRESSION_LENGTH);
-        printf("輸入算式:\n");
+        printf("Enter an expression:\n");
         fgets(expression, MAX_EXPRESSION_LENGTH, stdin);
-        printf("Ans:%lf\n", calculate(expression));
+        printf("Result:%lf\n", calculate(expression));
         free(expression);
     }
 
