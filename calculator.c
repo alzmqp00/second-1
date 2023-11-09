@@ -102,7 +102,7 @@ double calculate(char *expression)
 }
 int main()
 {
-    printf("運算式裡可以有括號，Operators包含+、-、：*、/、%、^，Operands most be positive\n");
+    printf("運算式裡可以有括號，Operators包含+、-、：*、/、%、^，運算元必須是正數\n");
     while (1)
     {
         char *expression = (char *)malloc(MAX_EXPRESSION_LENGTH);

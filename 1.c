@@ -56,6 +56,8 @@ double evaluateExpression(char *expression)
         {
             // 解析操作数
             double operand = atof(expression + i);
+
+            printf("%lf\n", operand);
             operandStack[++operandTop] = operand;
             while (i < len && (isdigit(expression[i]) || expression[i] == '.'))
             {
