@@ -1,4 +1,4 @@
-package javaa.fightcopy;
+package javaa.RPG.fightcopy;
 
 public class mage extends Role {
 

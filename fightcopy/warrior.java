@@ -6,6 +6,9 @@ public class warrior extends Role {
         super(name, life, ma);
     }
 
+    warrior() {
+
+    }
     /*
      * warrior(String name, int life, int magic) {
      * setLife(life);
