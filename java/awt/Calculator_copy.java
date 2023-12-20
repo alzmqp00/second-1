@@ -3,8 +3,8 @@ package javaa.awt;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Calculator {
-    static Frame frm = new Frame("DSG Calculator"); // 建立視窗frm
+public class Calculator_copy extends Frame implements ActionListener {
+    static Calculator_copy frm = new Calculator_copy(); // 建立視窗frm
     static Label lab = new Label("0", Label.RIGHT); // 建立標筆1ab
     static Label lab2 = new Label("DSG Calculator", Label.CENTER);
     static Panel num_pnl = new Panel(new GridLayout(3, 3, 0, 0)); // number panel, 0,0為邊際寬度
@@ -20,7 +20,7 @@ public class Calculator {
 
     public static void main(String[] args) {
         // TODO 自動產生的方法 Stub
-
+        frm.setTitle("DSG Calculator");
         frm.setLayout(null); // 取消視窗的版面設定
         frm.setSize(450, 300);
         frm.setResizable(false); // 將視窗設定為固定大小
@@ -37,17 +37,17 @@ public class Calculator {
         for (int i = 1; i <= 9; i++) {
             Button button = new Button(Integer.toString(i));
             num_pnl.add(button);
-            button.addActionListener(new ActLis());
+            button.addActionListener(frm);
         }
         frm.add(num_pnl);
         button0.setBounds(20, 220, 400 / 3 + 1, 40);
         button0.setFont(new Font("Serief", Font.BOLD, 18));
-        button0.addActionListener(new ActLis());
+        button0.addActionListener(frm);
         frm.add(button0);
 
         button_dot.setBounds(150, 220, 200 / 3 + 1, 40);
         button_dot.setFont(new Font("Serief", Font.BOLD, 18));
-        button_dot.addActionListener(new ActLis());
+        button_dot.addActionListener(frm);
         frm.add(button_dot);
 
         frm.add(lab); // 將1ab放進視窗中
@@ -58,14 +58,14 @@ public class Calculator {
         op1_pnl.setForeground(Color.BLUE);
         Button buttontemp = new Button("+");
         op1_pnl.add(buttontemp);
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
 
         op1_pnl.add(buttontemp = new Button("-"));
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
         op1_pnl.add(buttontemp = new Button("X"));
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
         op1_pnl.add(buttontemp = new Button("/"));
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
         frm.add(op1_pnl);
         op2_pnl.setForeground(Color.RED);
         op2_pnl.setFont(new Font("Serief", Font.BOLD, 18));
@@ -75,12 +75,12 @@ public class Calculator {
 
         op2_pnl.add(buttontemp);
 
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
 
         buttontemp = new Button("Clear");
         op2_pnl.add(buttontemp);
 
-        buttontemp.addActionListener(new ActLis());
+        buttontemp.addActionListener(frm);
         frm.add(op2_pnl);
 
         frm.setVisible(true);
@@ -92,42 +92,41 @@ public class Calculator {
         });
     }
 
-    static class ActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            Button button = (Button) e.getSource();
-            String Labe = button.getLabel();
-            if (Labe.equals(".")) {
-                str = str + Labe;
-                lab.setText(str);
-            } else if (Labe.equals("Clear")) {
-                str = "";
-                lab.setText("0");
-            } else if (Labe.equals("=")) {
-                randstack[++randtop] = Integer.valueOf(str);
-                // 未完成
-                str = "";
-                lab.setText("0");
-            } else if (Labe == "+") {
-                randstack[++randtop] = Integer.valueOf(str);
-                operatorstack[++operatortop] = '+';
-            } else if (Labe == "-") {
-                randstack[++randtop] = Integer.valueOf(str);
-                operatorstack[++operatortop] = '-';
-            } else if (Labe == "X") {
-                randstack[++randtop] = Integer.valueOf(str);
-                operatorstack[++operatortop] = 'X';
-            } else if (Labe == "/") {
-                randstack[++randtop] = Integer.valueOf(str);
-                operatorstack[++operatortop] = '/';
-            } else {
-                for (int i = 0; i < 10; i++) {
-                    if (Integer.valueOf(Labe) == i) {
-                        str = str + Labe;
-                        lab.setText(str);
-                    }
+    public void actionPerformed(ActionEvent e) {
+        Button button = (Button) e.getSource();
+        String Labe = button.getLabel();
+        if (Labe.equals(".")) {
+            str = str + Labe;
+            lab.setText(str);
+        } else if (Labe.equals("Clear")) {
+            str = "";
+            lab.setText("0");
+        } else if (Labe.equals("=")) {
+            randstack[++randtop] = Integer.valueOf(str);
+            // 未完成
+            str = "";
+            lab.setText("0");
+        } else if (Labe == "+") {
+            randstack[++randtop] = Integer.valueOf(str);
+            operatorstack[++operatortop] = '+';
+        } else if (Labe == "-") {
+            randstack[++randtop] = Integer.valueOf(str);
+            operatorstack[++operatortop] = '-';
+        } else if (Labe == "X") {
+            randstack[++randtop] = Integer.valueOf(str);
+            operatorstack[++operatortop] = 'X';
+        } else if (Labe == "/") {
+            randstack[++randtop] = Integer.valueOf(str);
+            operatorstack[++operatortop] = '/';
+        } else {
+            for (int i = 0; i < 10; i++) {
+                if (Integer.valueOf(Labe) == i) {
+                    str = str + Labe;
+                    lab.setText(str);
                 }
             }
         }
+
     }
 
 }
