@@ -23,6 +23,7 @@ public class app20_1 extends Frame implements ActionListener {
         Graphics g = getGraphics();
         // g.drawRect(100, 50, 70, 55);
         paint(g);
+
     }
 
     public void paint(Graphics g) {
